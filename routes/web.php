@@ -82,3 +82,21 @@ Route::get('/',function (){
    return'Home Page';
 });
 
+
+Route::get('/redirect/{service}', 'SocialController@redirect');
+Route::get('/callback/{service}', 'SocialController@callback');
+Route::get('/fillable','CrudController@get_offers');
+
+
+Route::group(['prefix'=> LaravelLocalization::setLocale(),'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] ],function (){
+
+ Route::group(['prefix'=>'offers'],function (){
+
+
+    Route::get('/create','CrudController@create');
+    Route::post('/ajouter','CrudController@store')->name('offers.store');
+
+    });
+   
+
+});

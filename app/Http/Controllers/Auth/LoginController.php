@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use http\Env\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -37,9 +38,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //se connecter avec email or mobile
     public function username()
-    {
-         return'email';
+    {    /*
+       $identify=request()->input('identify');           // se input peut etre raef.bouzid98@gmail.com or 58817147
+       $field=filter_var($identify,FILTER_VALIDATE_EMAIL) ? 'email':'mobile';        //filtrer var identify
+        request()->merge([$identify=>$field]);                            //merge: ajouter un nouveau input in request()
+        return $field;
+         */
+
+        return 'email';
+
+
 
 
     }
